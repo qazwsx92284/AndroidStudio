@@ -24,11 +24,15 @@ public class MainActivity extends AppCompatActivity {
         userInput = (EditText) findViewById(R.id.editText);
         button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
+        textView.setText("");
         View.OnClickListener ourOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 numTimesClicked = numTimesClicked+1;
                 String result = "\nThe button got tapped " + numTimesClicked + " time";
+                if(numTimesClicked !=1) {
+                    result += "s"; // this it the same as result = result + "s";
+                }
                 textView.append(result);
             }
         };
