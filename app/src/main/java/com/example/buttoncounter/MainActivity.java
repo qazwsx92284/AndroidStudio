@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
     private static final String TAG = "MainActivity";
-    private final String   TEXT_CONTENTS = "TextContents";
+    private final String TEXT_CONTENTS = "TextContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,53 +69,56 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "onRestoreInstanceState: in");
+        //onPause is a good place to save any data
+        //that the user would want to keep permanently
+        Log.d(TAG, "onPause: in");
         super.onPause();
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onPause: out");
     }
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "onRestoreInstanceState: in");
+        Log.d(TAG, "onStop: in");
         super.onStop();
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onStop: out");
     }
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onRestoreInstanceState: in");
+        Log.d(TAG, "onDestroy: in");
         super.onDestroy();
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onDestroy: out");
     }
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "onRestoreInstanceState: in");
+        Log.d(TAG, "onStart: in");
         super.onStart();
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onStart: out");
     }
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "onRestoreInstanceState: in");
+        Log.d(TAG, "onResume: in");
         super.onResume();
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onResume: out");
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        Log.d(TAG, "onRestoreInstanceState: in");
-        outState.putString(TEXT_CONTENTS, textView.getText().toString()) ;
-    //save the current value of whatever is in the textview into that bundle so that we can get access to that somewhere else
+        Log.d(TAG, "onSaveInstanceState: in");
+        outState.putString(TEXT_CONTENTS, textView.getText().toString());
+        //save the current value of whatever is in the textView into that bundle
+        // so that we can get access to that somewhere else
         super.onSaveInstanceState(outState);
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onSaveInstanceState: out");
     }
 
     @Override
     protected void onRestart() {
-        Log.d(TAG, "onRestoreInstanceState: in");
+        Log.d(TAG, "onRestart: in");
         super.onRestart();
-        Log.d(TAG, "onRestoreInstanceState: out");
+        Log.d(TAG, "onRestart: out");
 
     }
 }
