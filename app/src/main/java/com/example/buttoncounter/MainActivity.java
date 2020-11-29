@@ -1,3 +1,4 @@
+
 package com.example.buttoncounter;
 
 import android.os.Bundle;
@@ -15,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     // EditText, saying this is type of info.
 
     private TextView textView;
-    private int numButtonClicked=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,27 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
         textView.setText(""); //Delete "TextView" text, which was set by default.
+        userInput.setText(""); // Clear the contents of the EditText when the app runs
         textView.setMovementMethod(new ScrollingMovementMethod()); // adding vertical scroll bar
         View.OnClickListener ourOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               numButtonClicked++;
-               String result = "The button got tapped " + numButtonClicked + " time";
-               if(numButtonClicked !=1) {
-                    result+="s";
-               }
-                result +="\n";
+                String result = userInput.getText().toString();
+                //Solution 1.
+                //String result = userInput.getText().toString();
+                //userInput.getText() type is Editable
+                //so use .toString to change type to String
+                //Solution 2.
+                //Editable e = userInput.getText();
+                //String result = e.toString(); , solution 1 is more common.
+                result = result + "\n";
                 textView.append(result);
+                userInput.setText(""); // Clear the contents of the EditText after a user click on button
             }
         };
-        button.setOnClickListener(ourOnClickListener);
+        if (button != null) {
+            button.setOnClickListener(ourOnClickListener);
+        }
+
     }
 }
