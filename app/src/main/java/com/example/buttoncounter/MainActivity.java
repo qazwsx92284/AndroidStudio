@@ -1,6 +1,7 @@
 package com.example.buttoncounter;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,9 +13,9 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userInput; //EditText : class, object, it is widget,so EditText!= editText
     // EditText, saying this is type of info.
-    private Button button;
+
     private TextView textView;
-    private int numTimesClicked = 0;
+    private int numButtonClicked=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,17 +23,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         userInput = (EditText) findViewById(R.id.editText);
-        button = (Button) findViewById(R.id.button);
+        Button button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
-        textView.setText("");
+        textView.setText(""); //Delete "TextView" text, which was set by default.
+        textView.setMovementMethod(new ScrollingMovementMethod()); // adding vertical scroll bar
         View.OnClickListener ourOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numTimesClicked = numTimesClicked+1;
-                String result = "\nThe button got tapped " + numTimesClicked + " time";
-                if(numTimesClicked !=1) {
-                    result += "s"; // this it the same as result = result + "s";
-                }
+               numButtonClicked++;
+               String result = "The button got tapped " + numButtonClicked + " time";
+               if(numButtonClicked !=1) {
+                    result+="s";
+               }
+                result +="\n";
                 textView.append(result);
             }
         };
