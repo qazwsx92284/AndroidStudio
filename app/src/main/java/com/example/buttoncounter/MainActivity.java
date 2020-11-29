@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
     private static final String TAG = "MainActivity";
+    private final String   TEXT_CONTENTS = "TextContents";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         Log.d(TAG, "onRestoreInstanceState: in");
         super.onRestoreInstanceState(savedInstanceState);
+//        String savedString = savedInstanceState.getString(TEXT_CONTENTS);
+//        textView.setText(savedString);
+        textView.setText(savedInstanceState.getString(TEXT_CONTENTS));
+        //shortcut way to save
         Log.d(TAG, "onRestoreInstanceState: out");
     }
 
@@ -100,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         Log.d(TAG, "onRestoreInstanceState: in");
+        outState.putString(TEXT_CONTENTS, textView.getText().toString()) ;
+    //save the current value of whatever is in the textview into that bundle so that we can get access to that somewhere else
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onRestoreInstanceState: out");
     }
